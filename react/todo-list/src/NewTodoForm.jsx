@@ -2,7 +2,7 @@ import { useContext, useState } from "react";
 import { CollectionCtx } from "./Context";
 
 export function NewTodoForm() {
-  const [, todoListCollection, refreshTodoList] = useContext(CollectionCtx);
+  const [_, todoListCollection, refreshTodoList] = useContext(CollectionCtx);
 
   const [newItem, setNewItem] = useState("");
 
@@ -11,8 +11,8 @@ export function NewTodoForm() {
     if (newItem === "") return;
 
     await todoListCollection.insertOne({
-      id: crypto.randomUUID(),
       title: newItem,
+      completed: false
     });
 
     await refreshTodoList();

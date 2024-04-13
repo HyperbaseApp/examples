@@ -30,24 +30,10 @@ export default class Hyperbase {
       },
     });
 
-    this.#api(`/project/${this.#_projectId}`, {
-      method: "GET",
-      headers: {
-        authorization: `Bearer ${res.data.token}`,
-      },
-    });
-
     this.#_token = res.data.token;
   }
 
   async setCollection(collectionId) {
-    this.#api(`/project/${this.#_projectId}/collection/${collectionId}`, {
-      method: "GET",
-      headers: {
-        authorization: `Bearer ${this.#_token}`,
-      },
-    });
-
     return new HyperbaseCollection(this, collectionId);
   }
 
